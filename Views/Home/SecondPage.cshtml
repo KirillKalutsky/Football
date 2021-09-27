@@ -1,0 +1,56 @@
+﻿@model List<Footballer>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Пол
+            </th>
+            <th>
+                Дата рождения
+            </th>
+            <th>
+                Команда
+            </th>
+            <th>
+                Страна
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Team)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

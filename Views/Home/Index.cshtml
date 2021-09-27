@@ -1,0 +1,76 @@
+﻿@using first.Models
+
+@model Tuple<Footballer,List<Team>>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Магазин футболистов</title>
+</head>
+
+<body>
+    <style>
+        div {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .playerForm, .teamForm {
+            width: 50%;
+        }
+    </style>
+
+    <div class="playerForm">
+
+        <form method="post" action="/createFootballer" enctype="application/x-www-form-urlencoded">
+            <div>
+                <label for="name">Имя игрока:</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label for="surname">Фамилия игрока:</label>
+                <input type="text" name="surname">
+            </div>
+            <div>
+                <label>Пол:</label>
+                @Html.DropDownListFor(m => m.Item1.Sex,
+                     new SelectList(Enum.GetValues(typeof(Sex))),
+                     "Select Gender")
+            </div>
+            <div>
+                <label for="dateOfBirth">Дата рождения:</label>
+                <input type="date" name="dateOfBirth">
+            </div>
+            <div>
+                <label>Страна:</label>
+                @Html.DropDownListFor(m => m.Item1.Country,
+                    new SelectList(Enum.GetValues(typeof(Country))),
+                    "Select Country")
+            </div>
+            <div>
+                <label>Команда:</label>
+                @Html.DropDownListFor(m => m.Item1.Team,
+                    new SelectList(Model.Item2),
+                    "Select Team")
+            </div>
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+
+    <div class="teamForm">
+        Форма создания команды
+        <form method="post" action="/createTeam">
+            <div>
+                <label for="name">Название команды:</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <input type="submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
